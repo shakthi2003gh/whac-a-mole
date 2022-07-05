@@ -12,6 +12,7 @@
 
       body {
         min-height: 100vh;
+        user-select: none;
       }
 
       h1 {
@@ -91,6 +92,8 @@
 
     <script>
       let points = 0;
+      let LastClick = new Date();
+      let now = new Date();
 
       function showMole() {
         const blocks = document.querySelectorAll(".board div");
@@ -112,6 +115,7 @@
 
       function whac() {
         document.querySelector(".points output").innerText = ++points;
+        LastClick = new Date();
         showMole();
       }
 
@@ -120,7 +124,13 @@
           document.querySelector(".points output").innerText = --points;
       });
 
-      setInterval(showMole, 790);
+      setInterval(showMole, 785);
+      setInterval(() => {
+        now = new Date();
+        console.log(now - LastClick);
+        if (now - LastClick > 3500)
+          document.querySelector(".points output").innerText = --points;
+      }, 1000);
     </script>
   </body>
 </html>
