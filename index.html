@@ -122,6 +122,7 @@
       window.addEventListener("click", (e) => {
         if (!e.target.closest("img"))
           document.querySelector(".points output").innerText = --points;
+        showMole()
       });
 
       setInterval(showMole, 785);
